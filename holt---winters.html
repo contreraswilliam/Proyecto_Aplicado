@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5 DIAS FESTIVOS EN COLOMBIA Y ESTADOS UNIDOS | Proyecto de grado - Remesas</title>
-  <meta name="description" content="5 DIAS FESTIVOS EN COLOMBIA Y ESTADOS UNIDOS | Proyecto de grado - Remesas" />
+  <title>4 HOLT - WINTERS | Proyecto de grado - Remesas</title>
+  <meta name="description" content="4 HOLT - WINTERS | Proyecto de grado - Remesas" />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5 DIAS FESTIVOS EN COLOMBIA Y ESTADOS UNIDOS | Proyecto de grado - Remesas" />
+  <meta property="og:title" content="4 HOLT - WINTERS | Proyecto de grado - Remesas" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5 DIAS FESTIVOS EN COLOMBIA Y ESTADOS UNIDOS | Proyecto de grado - Remesas" />
+  <meta name="twitter:title" content="4 HOLT - WINTERS | Proyecto de grado - Remesas" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="holt---winters.html"/>
-
+<link rel="prev" href="preprocesamiento-y-visualizacion.html"/>
+<link rel="next" href="dias-festivos-en-colombia-y-estados-unidos.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -211,135 +211,112 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="dias-festivos-en-colombia-y-estados-unidos" class="section level1 hasAnchor" number="5">
-<h1><span class="header-section-number">5</span> DIAS FESTIVOS EN COLOMBIA Y ESTADOS UNIDOS<a href="dias-festivos-en-colombia-y-estados-unidos.html#dias-festivos-en-colombia-y-estados-unidos" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="set-de-datos-con-los-dias-festivos-en-colombia" class="section level2 hasAnchor" number="5.1">
-<h2><span class="header-section-number">5.1</span> Set de datos con los dias festivos en Colombia<a href="dias-festivos-en-colombia-y-estados-unidos.html#set-de-datos-con-los-dias-festivos-en-colombia" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Se incluye en este set de datos otras festividades de Colombia que no necesariamente estan marcadas como dias festivos, pero son importantes para los modelos.</p>
-<pre><code>## # A tibble: 6 × 3
-##   Fecha               Dia_Semana Festividad                       
-##   &lt;dttm&gt;              &lt;chr&gt;      &lt;chr&gt;                            
-## 1 2019-01-01 00:00:00 Martes     Año Nuevo                        
-## 2 2019-01-06 00:00:00 Domingo    Día de la Epifanía               
-## 3 2019-01-07 00:00:00 Lunes      Día de los Reyes Magos           
-## 4 2019-03-02 00:00:00 Sábado     Carnaval de Barranquilla (Inicio)
-## 5 2019-03-05 00:00:00 Martes     Carnaval de Barranquilla (Fin)   
-## 6 2019-03-25 00:00:00 Lunes      Día de San José</code></pre>
+<div id="holt---winters" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">4</span> HOLT - WINTERS<a href="holt---winters.html#holt---winters" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<pre><code>##   Fecha_Origen Monto_USD
+## 1   2023-01-01  916300.9
+## 2   2023-01-02 4381038.2
+## 3   2023-01-03 6163327.4
+## 4   2023-01-04 6230153.0
+## 5   2023-01-05 6749396.1
+## 6   2023-01-06 7026649.9</code></pre>
+<div id="visualizacion-de-la-variación-de-los-pagos-a-lo-largo-del-tiempo" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Visualizacion de la variación de los pagos a lo largo del tiempo<a href="holt---winters.html#visualizacion-de-la-variación-de-los-pagos-a-lo-largo-del-tiempo" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="Remesas-en-dolares_files/figure-html/unnamed-chunk-63-1.png" width="672" /></p>
 </div>
-<div id="set-de-datos-con-los-dias-festivos-en-estados-unidos" class="section level2 hasAnchor" number="5.2">
-<h2><span class="header-section-number">5.2</span> Set de datos con los dias festivos en Estados Unidos<a href="dias-festivos-en-colombia-y-estados-unidos.html#set-de-datos-con-los-dias-festivos-en-estados-unidos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Se incluye en este set de datos otras festividades de Estados Unidos que no necesariamente estan marcadas como dias festivos, pero son importantes para los modelos.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="dias-festivos-en-colombia-y-estados-unidos.html#cb23-1" tabindex="-1"></a><span class="co"># Carga de festivos en Estados Unidos</span></span>
-<span id="cb23-2"><a href="dias-festivos-en-colombia-y-estados-unidos.html#cb23-2" tabindex="-1"></a>festivos_eeuu <span class="ot">&lt;-</span> <span class="fu">drive_get</span>(<span class="st">&quot;Festivos_EEUU_2019_2024.xlsx&quot;</span>)</span>
-<span id="cb23-3"><a href="dias-festivos-en-colombia-y-estados-unidos.html#cb23-3" tabindex="-1"></a><span class="fu">drive_download</span>(festivos_eeuu, <span class="at">path =</span> <span class="st">&quot;Festivos_EEUU_2019_2024.xlsx&quot;</span>, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb23-4"><a href="dias-festivos-en-colombia-y-estados-unidos.html#cb23-4" tabindex="-1"></a>fest_eeuu <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;Festivos_EEUU_2019_2024.xlsx&quot;</span>)</span>
-<span id="cb23-5"><a href="dias-festivos-en-colombia-y-estados-unidos.html#cb23-5" tabindex="-1"></a></span>
-<span id="cb23-6"><a href="dias-festivos-en-colombia-y-estados-unidos.html#cb23-6" tabindex="-1"></a><span class="fu">head</span>(fest_eeuu)</span></code></pre></div>
-<pre><code>## # A tibble: 6 × 3
-##   Fecha               Dia_Semana Festividad                   
-##   &lt;dttm&gt;              &lt;chr&gt;      &lt;chr&gt;                        
-## 1 2019-01-01 00:00:00 Martes     Año Nuevo                    
-## 2 2019-01-21 00:00:00 Lunes      Día de Martin Luther King Jr.
-## 3 2019-02-14 00:00:00 Jueves     Valentine&#39;s Day              
-## 4 2019-02-18 00:00:00 Lunes      Día de los Presidentes       
-## 5 2019-03-17 00:00:00 Domingo    St. Patrick&#39;s Day            
-## 6 2019-05-12 00:00:00 Domingo    Mother&#39;s Day</code></pre>
+<div id="definición-y-caracteristicas-de-la-serie." class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Definición y caracteristicas de la serie.<a href="holt---winters.html#definición-y-caracteristicas-de-la-serie." class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<pre><code>## Time Series:
+## Start = c(2023, 1) 
+## End = c(2023, 20) 
+## Frequency = 365 
+##  [1]  916300.9 4381038.2 6163327.4 6230153.0 6749396.1 7026649.9 4915196.4 1916674.3 4902585.6
+## [10] 6047834.2 5164272.1 4514096.5 5612955.0 4481684.4 2117689.1 6422973.4 5787001.0 5290073.5
+## [19] 4886105.7 5715334.9</code></pre>
+<pre><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+##   916301  5695333  6804683  6584418  7860638 13633887</code></pre>
+<p>La serie de tiempo <code>Datos_FO_ts</code> muestra el comportamiento de los montos de pago en dólares registrados diariamente desde enero de 2023.</p>
+<ul>
+<li><strong>Valor mínimo (Min)</strong>: El monto más bajo registrado es de <strong>314,473 USD</strong>.</li>
+<li><strong>Primer cuartil (1st Qu.)</strong>: El 25% de los montos registrados son menores o iguales a <strong>5,732,341 USD</strong>.</li>
+<li><strong>Mediana (Median)</strong>: El valor central de la serie es <strong>7,045,531 USD</strong>, lo que indica que la mitad de los montos son mayores o iguales a este valor y la otra mitad son menores.</li>
+<li><strong>Media (Mean)</strong>: El promedio de los montos es de <strong>6,592,872 USD</strong>, lo cual está relativamente cerca de la mediana, sugiriendo que no hay una gran asimetría en los datos.</li>
+<li><strong>Tercer cuartil (3rd Qu.)</strong>: El 75% de los montos son menores o iguales a <strong>8,074,062 USD</strong>.</li>
+<li><strong>Valor máximo (Max)</strong>: El monto máximo registrado es de <strong>13,866,707 USD</strong>.</li>
+</ul>
+<p><img src="Remesas-en-dolares_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
 </div>
-<div id="series-de-datos-para-feriados-en-colombia-y-estados-unidos" class="section level2 hasAnchor" number="5.3">
-<h2><span class="header-section-number">5.3</span> Series de datos para feriados en Colombia y Estados Unidos<a href="dias-festivos-en-colombia-y-estados-unidos.html#series-de-datos-para-feriados-en-colombia-y-estados-unidos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="colombia" class="section level3 hasAnchor" number="5.3.1">
-<h3><span class="header-section-number">5.3.1</span> Colombia<a href="dias-festivos-en-colombia-y-estados-unidos.html#colombia" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<pre><code>##            [,1]
-## 2019-01-01    1
-## 2019-01-06    7
-## 2019-01-07   13
-## 2019-03-02    3
-## 2019-03-05    2
-## 2019-03-25   15</code></pre>
-<pre><code>## [1] &quot;xts&quot; &quot;zoo&quot;</code></pre>
-<pre><code>## [1] &quot;2019-01-01 UTC&quot;</code></pre>
-<pre><code>## [1] &quot;2024-12-30 UTC&quot;</code></pre>
-<p><img src="Remesas-en-dolares_files/figure-html/unnamed-chunk-79-1.png" width="672" /></p>
-<p><strong>Prueba de Dickey-Fuller Aumentada (ADF)</strong></p>
-<pre><code>## 
-##  Augmented Dickey-Fuller Test
-## 
-## data:  serie_fest_col
-## Dickey-Fuller = -10.742, Lag order = 5, p-value = 0.01
-## alternative hypothesis: stationary</code></pre>
+<div id="gráfico-de-caja-boxplot-por-día-de-la-semana" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Gráfico de Caja (Boxplot) por Día de la Semana<a href="holt---winters.html#gráfico-de-caja-boxplot-por-día-de-la-semana" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="Remesas-en-dolares_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
+<p>El gráfico de cajas muestra la distribución de los montos en dólares (Monto_USD) para cada día de la semana (Dia_semana). El es comparar los montos de pago en función del día de la semana para identificar variaciones, como si ciertos días tienden a tener pagos más altos o más bajos.</p>
+<p>En este caso, es notable que el dia domingo se registran valores mas bajos en comparación con los demas dias de la semana.</p>
 </div>
-<div id="estados-unidos" class="section level3 hasAnchor" number="5.3.2">
-<h3><span class="header-section-number">5.3.2</span> Estados Unidos<a href="dias-festivos-en-colombia-y-estados-unidos.html#estados-unidos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<pre><code>##            [,1]
-## 2019-01-01    1
-## 2019-01-21    8
-## 2019-02-14   15
-## 2019-02-18    6
-## 2019-03-17   14
-## 2019-05-12   12</code></pre>
-<pre><code>## [1] &quot;xts&quot; &quot;zoo&quot;</code></pre>
-<pre><code>## [1] &quot;2019-01-01 UTC&quot;</code></pre>
-<pre><code>## [1] &quot;2024-12-25 UTC&quot;</code></pre>
-<p><img src="Remesas-en-dolares_files/figure-html/unnamed-chunk-83-1.png" width="672" /></p>
-<p><strong>Prueba de Dickey-Fuller Aumentada (ADF)</strong></p>
-<pre><code>## 
-##  Augmented Dickey-Fuller Test
-## 
-## data:  serie_fest_eeuu
-## Dickey-Fuller = -6.0964, Lag order = 4, p-value = 0.01
-## alternative hypothesis: stationary</code></pre>
+<div id="logaritmo-de-monto-en-dolares" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Logaritmo de Monto en Dolares<a href="holt---winters.html#logaritmo-de-monto-en-dolares" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>El siguiente grafico permite visualizar la evolución de los pagos en el tiempo, facilitando la observación de cambios y patrones en la serie al suavizar la variabilidad de los datos.</p>
+<p><img src="Remesas-en-dolares_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
 </div>
+<div id="aplicacion-del-modelo-holt-winter" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Aplicacion del modelo Holt-Winter<a href="holt---winters.html#aplicacion-del-modelo-holt-winter" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A continuación se utiliza una serie de tiempo transformada a escala logarítmica para aplicar el modelo de Holt-Winters para ajustar y descomponer la serie.</p>
+<p>Se aplica el modelo de Holt-Winters con un componente estacional aditivo (seasonal = “additive”) a la serie Datos_FP_ts2. El modelo de Holt-Winters es un método de suavizamiento exponencial que se utiliza para ajustar y pronosticar series de tiempo con componentes estacionales, tendencia y aleatoriedad.</p>
+<p><strong>Estacionalidad aditiva:</strong> Se asume que los efectos estacionales son constantes y no dependen del nivel de la serie.</p>
 </div>
-<div id="tratamiento-al-set-de-datos-original" class="section level2 hasAnchor" number="5.4">
-<h2><span class="header-section-number">5.4</span> Tratamiento al set de datos original<a href="dias-festivos-en-colombia-y-estados-unidos.html#tratamiento-al-set-de-datos-original" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Inicialmente se agrupa la informacion or fecha de origen y canal para obtener el total del monto en dolares.</p>
-<pre><code>## # A tibble: 6 × 3
-##   Fecha_Origen Canal          Monto_Total_USD
-##   &lt;date&gt;       &lt;chr&gt;                    &lt;dbl&gt;
-## 1 2023-01-01   APN                    403280.
-## 2 2023-01-01   Corresponsales         127379.
-## 3 2023-01-01   RedPropia              385641.
-## 4 2023-01-02   APN                   1845134 
-## 5 2023-01-02   Corresponsales         891002.
-## 6 2023-01-02   RedPropia             1644903.</code></pre>
-<p>Seguidamente, se transforma la coluna Canal, de tal forma que se visualice el porcentaje del monto que se origino por cada uno de ellos, reduciendo a una sola fila por cada fecha de origen de la remasa.</p>
-<pre><code>## # A tibble: 6 × 5
-##   Fecha_Origen Porcentaje_APN Porcentaje_Corr Porcentaje_RP Monto_Total_USD
-##   &lt;date&gt;       &lt;chr&gt;          &lt;chr&gt;           &lt;chr&gt;                   &lt;dbl&gt;
-## 1 2023-01-01   44.01%         13.9%           42.09%                916301.
-## 2 2023-01-02   42.12%         20.34%          37.55%               4381038.
-## 3 2023-01-03   36.46%         24.41%          39.12%               6163327.
-## 4 2023-01-04   38.19%         23.39%          38.42%               6230153.
-## 5 2023-01-05   39.43%         21.98%          38.59%               6749396.
-## 6 2023-01-06   44.32%         20.85%          34.83%               7026650.</code></pre>
-<div id="variable-festivo-en-colombia" class="section level3 hasAnchor" number="5.4.1">
-<h3><span class="header-section-number">5.4.1</span> Variable festivo en colombia<a href="dias-festivos-en-colombia-y-estados-unidos.html#variable-festivo-en-colombia" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Se añade la columna Festivo_Col al set de datos tratado anteriormente, dicha columna permite identificar con un 1 si el dia de originacion es festivo o 0 en caso contrario.</p>
-<pre><code>## # A tibble: 6 × 6
-##   Fecha_Origen Porcentaje_APN Porcentaje_Corr Porcentaje_RP Monto_Total_USD Festivo_Col
-##   &lt;date&gt;       &lt;chr&gt;          &lt;chr&gt;           &lt;chr&gt;                   &lt;dbl&gt;       &lt;dbl&gt;
-## 1 2023-01-01   44.01%         13.9%           42.09%                916301.           1
-## 2 2023-01-02   42.12%         20.34%          37.55%               4381038.           0
-## 3 2023-01-03   36.46%         24.41%          39.12%               6163327.           0
-## 4 2023-01-04   38.19%         23.39%          38.42%               6230153.           0
-## 5 2023-01-05   39.43%         21.98%          38.59%               6749396.           0
-## 6 2023-01-06   44.32%         20.85%          34.83%               7026650.           1</code></pre>
+<div id="gráfico-del-ajuste-del-modelo-de-holt-winters" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> Gráfico del Ajuste del Modelo de Holt-Winters<a href="holt---winters.html#gráfico-del-ajuste-del-modelo-de-holt-winters" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="Remesas-en-dolares_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
 </div>
-<div id="variable-festivo-en-estados-unidos" class="section level3 hasAnchor" number="5.4.2">
-<h3><span class="header-section-number">5.4.2</span> Variable festivo en Estados Unidos<a href="dias-festivos-en-colombia-y-estados-unidos.html#variable-festivo-en-estados-unidos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Se añade la columna Festivo_eeuu al set de datos tratado anteriormente, dicha columna permite identificar con un 1 si el dia de originacion es festivo o 0 en caso contrario.</p>
-<pre><code>## # A tibble: 6 × 7
-##   Fecha_Origen Porcentaje_APN Porcentaje_Corr Porcentaje_RP Monto_Total_USD Festivo_Col
-##   &lt;date&gt;       &lt;chr&gt;          &lt;chr&gt;           &lt;chr&gt;                   &lt;dbl&gt;       &lt;dbl&gt;
-## 1 2023-01-01   44.01%         13.9%           42.09%                916301.           1
-## 2 2023-01-02   42.12%         20.34%          37.55%               4381038.           0
-## 3 2023-01-03   36.46%         24.41%          39.12%               6163327.           0
-## 4 2023-01-04   38.19%         23.39%          38.42%               6230153.           0
-## 5 2023-01-05   39.43%         21.98%          38.59%               6749396.           0
-## 6 2023-01-06   44.32%         20.85%          34.83%               7026650.           1
-## # ℹ 1 more variable: Festivo_eeuu &lt;dbl&gt;</code></pre>
+<div id="gráfico-de-la-descomposición-de-holt-winters" class="section level2 hasAnchor" number="4.7">
+<h2><span class="header-section-number">4.7</span> Gráfico de la Descomposición de Holt-Winters<a href="holt---winters.html#gráfico-de-la-descomposición-de-holt-winters" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="Remesas-en-dolares_files/figure-html/unnamed-chunk-71-1.png" width="672" /></p>
+</div>
+<div id="predicciones-a-partir-del-modelo-de-holt-winters" class="section level2 hasAnchor" number="4.8">
+<h2><span class="header-section-number">4.8</span> Predicciones a partir del modelo de Holt-Winters<a href="holt---winters.html#predicciones-a-partir-del-modelo-de-holt-winters" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<pre><code>## Time Series:
+## Start = c(2115, 6) 
+## End = c(2117, 5) 
+## Frequency = 7 
+##               fit      upr      lwr
+## 2115.714 15.82996 16.19468 15.46524
+## 2115.857 15.60309 16.00818 15.19799
+## 2116.000 14.84146 15.28349 14.39943
+## 2116.143 15.81119 16.28751 15.33488
+## 2116.286 15.79880 16.30729 15.29032
+## 2116.429 15.72583 16.26476 15.18690
+## 2116.571 15.67450 16.24242 15.10658
+## 2116.714 15.81931 16.42450 15.21411
+## 2116.857 15.59244 16.22391 14.96097
+## 2117.000 14.83081 15.48766 14.17397
+## 2117.143 15.80055 16.48197 15.11912
+## 2117.286 15.78816 16.49346 15.08285
+## 2117.429 15.71518 16.44371 14.98665
+## 2117.571 15.66385 16.41503 14.91267</code></pre>
+<p>La tabla muestra cómo el modelo de Holt-Winters estima las fluctuaciones diarias del monto en dólares en los próximos 14 días, reflejando una variabilidad ligera. Los intervalos ayudan a interpretar la predicción en función de su incertidumbre, lo que es clave para evaluar posibles escenarios en los valores futuros de los pagos.</p>
+</div>
+<div id="funcion-exponencial-para-regresar-a-la-escala-original." class="section level2 hasAnchor" number="4.9">
+<h2><span class="header-section-number">4.9</span> Funcion exponencial para regresar a la escala original.<a href="holt---winters.html#funcion-exponencial-para-regresar-a-la-escala-original." class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<pre><code>##        fit      upr     lwr
+## 1  7496571 10795881 5205557
+## 2  5974945  8959137 3984756
+## 3  2789748  4340459 1793059
+## 4  7357229 11846058 4569352
+## 5  7266638 12082748 4370201
+## 6  6755255 11579624 3940842
+## 7  6417249 11323778 3636692
+## 8  7417165 13585371 4049528
+## 9  5911657 11116114 3143876
+## 10 2760199  5323600 1431117
+## 11 7279299 14389003 3682548
+## 12 7189668 14555165 3551408
+## 13 6683701 13848860 3225671
+## 14 6349276 13457288 2995648</code></pre>
+<p>Esta salida muestra las predicciones y los intervalos de confianza de un modelo de serie de tiempo para el monto en dólares. Cada fila representa un día.</p>
+<p><strong><code>fit</code></strong>: Valor predicho central en dólares. Es el valor estimado para el monto en este periodo.
+<strong><code>upr</code></strong>: Límite superior del intervalo de predicción en dólares. Representa el valor máximo esperado en ese intervalo, proporcionando un margen de incertidumbre hacia arriba.
+<strong><code>lwr</code></strong>: Límite inferior del intervalo de predicción en dólares. Indica el valor mínimo esperado, estableciendo el margen de incertidumbre hacia abajo.</p>
+<p>Este intervalo entre <code>upr</code> y <code>lwr</code> ayuda a entender la variabilidad y la confiabilidad de la predicción en cada periodo.</p>
 
-</div>
 </div>
 </div>
             </section>
@@ -347,8 +324,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="holt---winters.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="preprocesamiento-y-visualizacion.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="dias-festivos-en-colombia-y-estados-unidos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
